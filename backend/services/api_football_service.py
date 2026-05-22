@@ -80,3 +80,26 @@ def get_match_statistics(fixture_id):
     data = response.json()
 
     return data["response"]
+
+def get_coaches_by_team(
+    team_id
+):
+
+    url = f"{BASE_URL}/coachs"
+
+    params = {
+        "team": team_id
+    }
+
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params,
+        timeout=15
+    )
+
+    response.raise_for_status()
+
+    data = response.json()
+
+    return data["response"]

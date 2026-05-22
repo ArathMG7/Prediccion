@@ -46,15 +46,6 @@ print(
 
 for match in matches:
 
-    existing_stats = session.query(
-        MatchStatistics
-    ).filter_by(
-        match_id=match.id
-    ).first()
-
-    if existing_stats:
-        continue
-
     try:
 
         print(

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base, relationship
-from sqlalchemy import Column, Float, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Boolean, Column, Float, Integer, String, DateTime, ForeignKey
 
 Base = declarative_base()
 
@@ -98,3 +98,96 @@ class MatchStatistics(Base):
 
     home_xg = Column(Float)
     away_xg = Column(Float)
+
+class Coach(Base):
+
+    __tablename__ = "coaches"
+
+    id = Column(
+        Integer,
+        primary_key=True
+    )
+
+    api_coach_id = Column(
+        Integer,
+        unique=True,
+        nullable=False
+    )
+
+    name = Column(String)
+
+    firstname = Column(String)
+
+    lastname = Column(String)
+
+    age = Column(Integer)
+
+    nationality = Column(String)
+
+    photo = Column(String)
+
+class TeamCoach(Base):
+
+    __tablename__ = "team_coaches"
+
+    id = Column(
+        Integer,
+        primary_key=True
+    )
+
+    team_id = Column(
+        Integer,
+        ForeignKey("teams.id"),
+        nullable=False
+    )
+
+    coach_id = Column(
+        Integer,
+        ForeignKey("coaches.id"),
+        nullable=False
+    )
+
+    start_date = Column(DateTime)
+
+    end_date = Column(DateTime)
+
+class MatchContext(Base):
+    __tablename__ = "match_context"
+
+    id = Column(Integer, primary_key=True)
+    match_id = Column(Integer, ForeignKey("matches.id"), unique=True, nullable=False)
+
+    home_coach_id = Column(Integer, ForeignKey("coaches.id"), nullable=True)
+    away_coach_id = Column(Integer, ForeignKey("coaches.id"), nullable=True)
+
+    home_coach_tenure_days = Column(Integer, nullable=True)
+    away_coach_tenure_days = Column(Integer, nullable=True)
+
+    home_rest_days = Column(Integer, nullable=True)
+    away_rest_days = Column(Integer, nullable=True)
+
+    home_points = Column(Integer)
+
+    away_points = Column(Integer)
+
+    home_position = Column(Integer)
+
+    away_position = Column(Integer)
+
+    points_diff = Column(Integer)
+
+    position_diff = Column(Integer)
+
+    home_title_race = Column(Boolean)
+
+    away_title_race = Column(Boolean)
+
+    home_europe_race = Column(Boolean)
+
+    away_europe_race = Column(Boolean)
+
+    home_relegation_risk = Column(Boolean)
+
+    away_relegation_risk = Column(Boolean)
+
+  
