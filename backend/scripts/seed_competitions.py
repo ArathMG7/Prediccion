@@ -42,6 +42,18 @@ competitions = [
         "code": "MX",
         "name": "Liga MX",
         "country": "Mexico"
+    },
+    {
+        "api_league_id": 94,
+        "code": "PLP",
+        "name": "Primera Liga",
+        "country": "Portugal"
+    },
+    {
+        "api_league_id": 88,
+        "code": "ED",
+        "name": "Eredivisie",
+        "country": "Netherlands"
     }
 ]
 

@@ -18,7 +18,9 @@ competitions = {
     135: "Serie A",
     78: "Bundesliga",
     61: "Ligue 1",
-    262: "Liga MX"
+    262: "Liga MX",
+    94: "Primera Liga",
+    88: "Eredivisie" 
 }
 
 seasons = [

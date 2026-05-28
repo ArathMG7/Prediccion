@@ -18,7 +18,9 @@ competitions = {
     135: "Serie A",
     78: "Bundesliga",
     61: "Ligue 1",
-    262: "Liga MX"  
+    262: "Liga MX",
+    94: "Primera Liga",
+    88: "Eredivisie"  
 }
 
 seasons = [
@@ -31,7 +33,8 @@ seasons = [
     #2022,
     #2023,
     #2024,
-    2025
+    #2025,
+    2026
 ]
 
 for league_id, league_name in competitions.items():

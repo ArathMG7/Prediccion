@@ -9,11 +9,13 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 ALLOWED_COMPETITIONS = [
-    "Premier League",
-    "La Liga",
-    "Serie A",
-    "Bundesliga",
-    "Ligue 1"
+    #"Premier League",
+    #"La Liga",
+    #"Serie A",
+    #"Bundesliga",
+    #"Ligue 1",
+    "Eredivisie",
+    "Primera Liga"
 ]
 
 def get_active_coach_relation(team_id, match_date):
