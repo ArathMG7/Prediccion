@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base, relationship
-from sqlalchemy import Boolean, Column, Float, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Boolean, Column, Float, Integer, String, DateTime, ForeignKey, func, UniqueConstraint
 
 Base = declarative_base()
 
@@ -190,4 +190,72 @@ class MatchContext(Base):
 
     away_relegation_risk = Column(Boolean)
 
-  
+class TeamPlayer(Base):
+    __tablename__ = "team_players"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+    team_id = Column(Integer, nullable=False, index=True)
+    
+    player_id = Column(Integer, nullable=False, index=True)
+
+    player_name = Column(String, nullable=True)
+    
+    age = Column(Integer, nullable=True)
+    
+    shirt_number = Column(Integer, nullable=True)
+    
+    position = Column(String, nullable=True)
+    
+    season = Column(Integer, nullable=False, index=True)
+
+    created_at = Column(DateTime, server_default=func.now())
+
+    __table_args__ = (
+        UniqueConstraint(
+            "team_id",
+            "player_id",
+            "season",
+            name="uq_team_players_team_player_season"
+        ),
+    )
+
+
+class MatchLineup(Base):
+    __tablename__ = "match_lineups"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+    fixture_id = Column(Integer, nullable=False, index=True)
+    
+    match_id = Column(Integer, nullable=True, index=True)
+    
+    team_id = Column(Integer, nullable=False, index=True)
+    
+    coach_id = Column(Integer, nullable=True, index=True)
+
+    formation = Column(String, nullable=True)
+
+    player_id = Column(Integer, nullable=False, index=True)
+    
+    player_name = Column(String, nullable=True)
+    
+    shirt_number = Column(Integer, nullable=True)
+    
+    position = Column(String, nullable=True)
+    
+    grid_position = Column(String, nullable=True)
+
+    is_starter = Column(Integer, nullable=False, default=1)
+
+    created_at = Column(DateTime, server_default=func.now())
+
+    __table_args__ = (
+        UniqueConstraint(
+            "fixture_id",
+            "team_id",
+            "player_id",
+            "is_starter",
+            name="uq_match_lineups_fixture_team_player_starter"
+        ),
+    )  

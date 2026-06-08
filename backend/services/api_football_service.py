@@ -103,3 +103,53 @@ def get_coaches_by_team(
     data = response.json()
 
     return data["response"]
+
+def get_fixture_lineups(
+    fixture_id
+):
+
+    url = (
+        f"{BASE_URL}/fixtures/lineups"
+    )
+
+    params = {
+        "fixture": fixture_id
+    }
+
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params,
+        timeout=30
+    )
+
+    response.raise_for_status()
+
+    data = response.json()
+
+    return data["response"]
+
+def get_team_squad(
+    team_id
+):
+
+    url = (
+        f"{BASE_URL}/players/squads"
+    )
+
+    params = {
+        "team": team_id
+    }
+
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params,
+        timeout=30
+    )
+
+    response.raise_for_status()
+
+    data = response.json()
+
+    return data["response"]
