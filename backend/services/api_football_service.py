@@ -153,3 +153,93 @@ def get_team_squad(
     data = response.json()
 
     return data["response"]
+
+def get_fixture_odds(fixture_id):
+
+    url = f"{BASE_URL}/odds"
+
+    params = {
+        "fixture": fixture_id
+    }
+
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params,
+        timeout=30
+    )
+
+    response.raise_for_status()
+
+    data = response.json()
+
+    return data["response"]
+
+
+def get_fixture_prediction(
+    fixture_id
+):
+
+    url = f"{BASE_URL}/predictions"
+
+    params = {
+        "fixture": fixture_id
+    }
+
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params,
+        timeout=30
+    )
+
+    response.raise_for_status()
+
+    data = response.json()
+
+    return data["response"]
+
+def get_fixtures_by_league_and_season(
+    league_id,
+    season
+):
+
+    url = f"{BASE_URL}/fixtures"
+
+    params = {
+        "league": league_id,
+        "season": season
+    }
+
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params,
+        timeout=30
+    )
+
+    response.raise_for_status()
+
+    data = response.json()
+
+    return data["response"]
+
+def get_league_seasons(
+    league_id
+):
+
+    url = f"{BASE_URL}/leagues"
+
+    params = {
+        "id": league_id
+    }
+
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params
+    )
+
+    response.raise_for_status()
+
+    return response.json()["response"]

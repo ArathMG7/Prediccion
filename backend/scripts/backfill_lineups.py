@@ -57,7 +57,8 @@ print(
 )
 
 print()
-
+empty_count = 0
+success_count = 0
 success = 0
 failed = 0
 
@@ -91,9 +92,10 @@ for idx, (_, match) in enumerate(
         )
 
         if not lineups:
-
+            empty_count += 1
             continue
-
+        
+        success_count += 1
         with engine.begin() as conn:
 
             for lineup in lineups:
@@ -226,7 +228,10 @@ for idx, (_, match) in enumerate(
                     )
 
         success += 1
-
+        print(
+            f"Con lineup: {success_count} | "
+            f"Sin lineup: {empty_count}"
+        )
     except Exception as ex:
 
         failed += 1

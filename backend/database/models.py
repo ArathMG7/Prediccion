@@ -242,7 +242,7 @@ class MatchLineup(Base):
     
     shirt_number = Column(Integer, nullable=True)
     
-    position = Column(String, nullable=True)
+    position = Column(String, nullable=True)  
     
     grid_position = Column(String, nullable=True)
 
@@ -259,3 +259,21 @@ class MatchLineup(Base):
             name="uq_match_lineups_fixture_team_player_starter"
         ),
     )  
+
+class MatchOdds(Base):
+    __tablename__ = "match_odds"
+
+    id = Column(Integer, primary_key=True)
+
+    fixture_id = Column(Integer, nullable=False, index=True)
+
+    bookmaker = Column(String)
+
+    home_odd = Column(Float)
+    draw_odd = Column(Float)
+    away_odd = Column(Float)
+
+    over_25 = Column(Float)
+    under_25 = Column(Float)
+
+    created_at = Column(DateTime)
